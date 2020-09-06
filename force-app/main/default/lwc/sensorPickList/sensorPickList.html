@@ -1,0 +1,39 @@
+<template>
+    <template if:true={sensors}>
+        <p>Sensors list</p>
+            <select onchange={onShowSensorInfo}>
+              <template for:each={sensors.data} for:item="sensor">
+                <option key={sensor.Id} value={sensor.Id}>
+                  {sensor.Name}
+                </option>
+              </template>
+            </select>
+          
+
+          <template if:true={events}>
+            <p>Sensor events</p>
+              <table border = "2">
+                  <thead>
+                    <td>X coord</td>
+                    <td>Y coord</td>
+                    <td>Z coord</td>
+                    <td>Modulus difference vectors</td>
+                  </thead>
+                  <template for:each={events} for:item="event">
+                    <tr key={event.Name}>
+                      <td>{event.X__c}</td>
+                      <td>{event.Y__c}</td>
+                      <td>{event.Z__c}</td>
+                      <td>{event.Modulus_Difference_Vectors__c}</td>
+                    </tr>
+                  </template>
+              </table>
+          </template>
+
+          <template if:true={events}>
+              No suitable events were found
+          </template>
+
+          <template if:false={events}>Sensor info here... Choose to see it</template>
+      </template>
+</template>
